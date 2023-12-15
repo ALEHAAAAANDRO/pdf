@@ -17,6 +17,7 @@ public class PDF2WordExample {
 
 	private static final String FILENAME = "src/main/resources/pdf.pdf";
 
+
 	public static void main(String[] args) {
 		try {
 			generateDocFromPDF(FILENAME);
@@ -26,9 +27,11 @@ public class PDF2WordExample {
 	}
 
 	public static void generateDocFromPDF(String filename) throws IOException {
+
 		XWPFDocument doc = new XWPFDocument();
 
 		String pdf = filename;
+		String fileout = pdf.substring(0, pdf.lastIndexOf(".")) + ".docx";
 		PdfReader reader = new PdfReader(pdf);
 		PdfReaderContentParser parser = new PdfReaderContentParser(reader);
 
@@ -40,7 +43,7 @@ public class PDF2WordExample {
 			run.setText(text);
 			run.addBreak(BreakType.PAGE);
 		}
-		FileOutputStream out = new FileOutputStream("src/main/resources/pdf.docx");
+		FileOutputStream out = new FileOutputStream(fileout);
 		doc.write(out);
 		out.close();
 		reader.close();

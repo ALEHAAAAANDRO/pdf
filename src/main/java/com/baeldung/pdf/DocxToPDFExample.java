@@ -17,10 +17,14 @@ import java.util.List;
 
 public class DocxToPDFExample {
 
-    public static void main(String[] args) throws IOException, DocumentException {
-        InputStream docxInputStream = new FileInputStream("input.docx");
+
+
+
+    public static void generatePDFFromDOCX(String filename) throws IOException, DocumentException {
+        String fileout = filename.substring(0, filename.lastIndexOf(".")) + ".pdf";
+        InputStream docxInputStream = new FileInputStream(filename);
         try (XWPFDocument document = new XWPFDocument(docxInputStream); 
-            OutputStream pdfOutputStream = new FileOutputStream("output.pdf");) {
+            OutputStream pdfOutputStream = new FileOutputStream(fileout);) {
             Document pdfDocument = new Document();
             PdfWriter.getInstance(pdfDocument, pdfOutputStream);
             pdfDocument.open();
