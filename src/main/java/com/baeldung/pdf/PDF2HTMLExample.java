@@ -35,7 +35,7 @@ public class PDF2HTMLExample {
 		PDDocument pdf = PDDocument.load(new File(filename));
 		PDFDomTree parser = new PDFDomTree();
 		Writer output = new PrintWriter(filename.substring(0,filename.lastIndexOf("."))
-				+ ".pdf", "utf-8");
+				+ ".html", "utf-8");
 		parser.writeText(pdf, output);
 		output.close();
 		if (pdf != null) {

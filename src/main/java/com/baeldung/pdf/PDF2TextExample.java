@@ -53,7 +53,8 @@ public class PDF2TextExample {
 		if (pdDoc != null)
 			pdDoc.close();
 
-		PrintWriter pw = new PrintWriter("src/output/pdf.txt");
+		PrintWriter pw = new PrintWriter(filename.substring(0,filename.lastIndexOf("."))
+				+ ".txt");
 		pw.print(parsedText);
 		pw.close();
 	}

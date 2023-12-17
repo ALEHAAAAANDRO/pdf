@@ -2,6 +2,7 @@ package docsGUI;
 
 import com.baeldung.pdf.PDF2HTMLExample;
 import com.baeldung.pdf.PDF2TextExample;
+import com.baeldung.pdf.PDF2WordExample;
 import crypto.Crypto;
 
 import javax.swing.*;
@@ -216,7 +217,7 @@ public class DocsGUI {
 
                 if(fromFormat == "PDF"){
                     switch (toFormat){
-                        case "HTML": //TODO: not work
+                        case "HTML":
                             try {
                                 PDF2HTMLExample.generateHTMLFromPDF(String.valueOf(choosenFile));
                             } catch (ParserConfigurationException | IOException ex) {
@@ -224,9 +225,16 @@ public class DocsGUI {
                             }
                             break;
 
-                        case "Text": //TODO: not work
+                        case "Text":
                             try {
                                 PDF2TextExample.generateTxtFromPDF(String.valueOf(choosenFile));
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+
+                        case "Docx":
+                            try {
+                                PDF2WordExample.generateDocFromPDF(String.valueOf(choosenFile));
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
