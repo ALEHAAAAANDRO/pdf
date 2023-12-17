@@ -1,8 +1,10 @@
 package docsGUI;
 
+import com.baeldung.pdf.DocxToPDFExample;
 import com.baeldung.pdf.PDF2HTMLExample;
 import com.baeldung.pdf.PDF2TextExample;
 import com.baeldung.pdf.PDF2WordExample;
+import com.itextpdf.text.DocumentException;
 import crypto.Crypto;
 
 import javax.swing.*;
@@ -190,12 +192,31 @@ public class DocsGUI {
         JButton file1Button = new JButton("Выбрать файл");
 
         JLabel fromFormatLabel = new JLabel("Из формата:");
-        fromFormatComboBox = new JComboBox<>(new String[]{"PDF"});
+        fromFormatComboBox = new JComboBox<>(new String[]{"PDF", "Docx"});
 
         JLabel toFormatLabel = new JLabel("В формат:");
-        toFormatComboBox = new JComboBox<>(new String[]{"HTML", "Image", "Text", "Docx"});
+        toFormatComboBox = new JComboBox<>(new String[]{"HTML", "Text", "Docx"});
 
         JButton processButton = new JButton("Обработать");
+
+        // Добавляем слушателя событий для списка "из формата"
+        fromFormatComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedFromFormat = (String) fromFormatComboBox.getSelectedItem();
+
+                DefaultComboBoxModel<String> toFormatModel = new DefaultComboBoxModel<>();
+                if ("PDF".equals(selectedFromFormat)) {
+                    toFormatModel.addElement("HTML");
+                    toFormatModel.addElement("Text");
+                    toFormatModel.addElement("Docx");
+                } else if ("Docx".equals(selectedFromFormat)){
+                    toFormatModel.addElement("PDF");
+                }
+                // Устанавливаем новую модель для списка "в формат"
+                toFormatComboBox.setModel(toFormatModel);
+            }
+        });
 
         file1Button.addActionListener(new ActionListener() {
             @Override
@@ -238,8 +259,20 @@ public class DocsGUI {
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
+                    }
+                }
 
-
+                if(fromFormat == "Docx") {
+                    switch (toFormat) {
+                        case "PDF":
+                            try {
+                                DocxToPDFExample.generatePDFFromDOCX(String.valueOf(choosenFile));
+                            } catch (DocumentException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            break;
                     }
                 }
             }
