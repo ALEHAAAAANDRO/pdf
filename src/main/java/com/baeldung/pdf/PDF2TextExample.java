@@ -23,7 +23,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDF2TextExample {
 
-	private static final String PDF = "src/main/resources/pdf.pdf";
+	private static final String PDF = "src/main/resources/html2pdf.pdf";
 	private static final String TXT = "src/main/resources/txt.txt";
 
 	public static void main(String[] args) {
@@ -35,7 +35,7 @@ public class PDF2TextExample {
 		}
 	}
 
-	private static void generateTxtFromPDF(String filename) throws IOException {
+	public static void generateTxtFromPDF(String filename) throws IOException {
 		File f = new File(filename);
 		String parsedText;
 		PDFParser parser = new PDFParser(new RandomAccessFile(f, "r"));
@@ -53,14 +53,16 @@ public class PDF2TextExample {
 		if (pdDoc != null)
 			pdDoc.close();
 
-		PrintWriter pw = new PrintWriter("src/output/pdf.txt");
+		PrintWriter pw = new PrintWriter(filename.substring(0,filename.lastIndexOf("."))
+				+ ".txt");
 		pw.print(parsedText);
 		pw.close();
 	}
 
-	private static void generatePDFFromTxt(String filename) throws IOException, DocumentException {
+	public static void generatePDFFromTxt(String filename) throws IOException, DocumentException {
 		Document pdfDoc = new Document(PageSize.A4);
-		PdfWriter.getInstance(pdfDoc, new FileOutputStream("src/output/txt.pdf"))
+		PdfWriter.getInstance(pdfDoc, new FileOutputStream(filename.substring(0,filename.lastIndexOf("."))
+						+ ".pdf"))
 				.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
 		pdfDoc.open();
 		

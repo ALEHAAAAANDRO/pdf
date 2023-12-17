@@ -31,10 +31,11 @@ public class PDF2HTMLExample {
 		}
 	}
 
-	private static void generateHTMLFromPDF(String filename) throws ParserConfigurationException, IOException {
+	public static void generateHTMLFromPDF(String filename) throws ParserConfigurationException, IOException {
 		PDDocument pdf = PDDocument.load(new File(filename));
 		PDFDomTree parser = new PDFDomTree();
-		Writer output = new PrintWriter("src/output/pdf.html", "utf-8");
+		Writer output = new PrintWriter(filename.substring(0,filename.lastIndexOf("."))
+				+ ".html", "utf-8");
 		parser.writeText(pdf, output);
 		output.close();
 		if (pdf != null) {

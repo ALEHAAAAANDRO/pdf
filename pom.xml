@@ -44,6 +44,11 @@
             <version>${xmlworker.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf</artifactId>
+            <version>${flying-saucer-pdf.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-scratchpad</artifactId>
             <version>${poi-scratchpad.version}</version>
@@ -88,6 +93,11 @@
             <artifactId>openhtmltopdf-pdfbox</artifactId>
             <version>${open-html-pdfbox.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -114,6 +124,8 @@
         <open-html-pdf-core.version>1.0.10</open-html-pdf-core.version>
         <flying-saucer-pdf-openpdf.version>9.2.1</flying-saucer-pdf-openpdf.version>
         <jsoup.version>1.16.2</jsoup.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
 </project>

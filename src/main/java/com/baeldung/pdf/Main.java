@@ -1,20 +1,18 @@
 package com.baeldung.pdf;
 
 import com.itextpdf.text.DocumentException;
+import docsGUI.DocsGUI;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
-
-    private static final String FILENAME = "input.docx";
-
     public static void main(String[] args) {
-        try {
-            DocxToPDFExample.generatePDFFromDOCX(FILENAME);
-            System.out.println("Conversion completed successfully.");
-        } catch (IOException | DocumentException e) {
-            System.err.println("Error during conversion: " + e.getMessage());
-            e.printStackTrace();
-        }
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DocsGUI()   ;
+            }
+        });
     }
 }

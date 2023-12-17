@@ -16,10 +16,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 public class DocxToPDFExample {
-
-
-
-
     public static void generatePDFFromDOCX(String filename) throws IOException, DocumentException {
         String fileout = filename.substring(0, filename.lastIndexOf(".")) + ".pdf";
         InputStream docxInputStream = new FileInputStream(filename);

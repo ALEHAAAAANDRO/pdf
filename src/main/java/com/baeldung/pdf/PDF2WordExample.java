@@ -15,7 +15,7 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
 public class PDF2WordExample {
 
-	private static final String FILENAME = "src/main/resources/pdf.pdf";
+	private static final String FILENAME = "C:\\Users\\Дмитрий\\Desktop";
 
 
 	public static void main(String[] args) {
