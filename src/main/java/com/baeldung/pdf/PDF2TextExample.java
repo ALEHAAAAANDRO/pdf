@@ -59,7 +59,7 @@ public class PDF2TextExample {
 		pw.close();
 	}
 
-	private static void generatePDFFromTxt(String filename) throws IOException, DocumentException {
+	public static void generatePDFFromTxt(String filename) throws IOException, DocumentException {
 		Document pdfDoc = new Document(PageSize.A4);
 		PdfWriter.getInstance(pdfDoc, new FileOutputStream(filename.substring(0,filename.lastIndexOf("."))
 						+ ".pdf"))

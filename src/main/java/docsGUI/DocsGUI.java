@@ -192,7 +192,7 @@ public class DocsGUI {
         JButton file1Button = new JButton("Выбрать файл");
 
         JLabel fromFormatLabel = new JLabel("Из формата:");
-        fromFormatComboBox = new JComboBox<>(new String[]{"PDF", "Docx"});
+        fromFormatComboBox = new JComboBox<>(new String[]{"PDF", "Docx", "Text"});
 
         JLabel toFormatLabel = new JLabel("В формат:");
         toFormatComboBox = new JComboBox<>(new String[]{"HTML", "Text", "Docx"});
@@ -211,6 +211,8 @@ public class DocsGUI {
                     toFormatModel.addElement("Text");
                     toFormatModel.addElement("Docx");
                 } else if ("Docx".equals(selectedFromFormat)){
+                    toFormatModel.addElement("PDF");
+                } else if ("Text".equals(selectedFromFormat)) {
                     toFormatModel.addElement("PDF");
                 }
                 // Устанавливаем новую модель для списка "в формат"
@@ -252,6 +254,7 @@ public class DocsGUI {
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
+                            break;
 
                         case "Docx":
                             try {
@@ -272,6 +275,22 @@ public class DocsGUI {
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
+                            break;
+                    }
+                }
+
+                if(fromFormat == "Text") {
+                    switch (toFormat) {
+                        case "PDF":
+
+                            try {
+                                PDF2TextExample.generatePDFFromTxt(String.valueOf(choosenFile));
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (DocumentException ex) {
+                                throw new RuntimeException(ex);
+                            }
+
                             break;
                     }
                 }
