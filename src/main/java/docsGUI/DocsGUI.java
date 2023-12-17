@@ -1,9 +1,6 @@
 package docsGUI;
 
-import com.baeldung.pdf.DocxToPDFExample;
-import com.baeldung.pdf.PDF2HTMLExample;
-import com.baeldung.pdf.PDF2TextExample;
-import com.baeldung.pdf.PDF2WordExample;
+import com.baeldung.pdf.*;
 import com.itextpdf.text.DocumentException;
 import crypto.Crypto;
 
@@ -192,7 +189,7 @@ public class DocsGUI {
         JButton file1Button = new JButton("Выбрать файл");
 
         JLabel fromFormatLabel = new JLabel("Из формата:");
-        fromFormatComboBox = new JComboBox<>(new String[]{"PDF", "Docx", "Text"});
+        fromFormatComboBox = new JComboBox<>(new String[]{"PDF", "Docx", "Text", "HTML"});
 
         JLabel toFormatLabel = new JLabel("В формат:");
         toFormatComboBox = new JComboBox<>(new String[]{"HTML", "Text", "Docx"});
@@ -213,6 +210,8 @@ public class DocsGUI {
                 } else if ("Docx".equals(selectedFromFormat)){
                     toFormatModel.addElement("PDF");
                 } else if ("Text".equals(selectedFromFormat)) {
+                    toFormatModel.addElement("PDF");
+                } else if ("HTML".equals(selectedFromFormat)) {
                     toFormatModel.addElement("PDF");
                 }
                 // Устанавливаем новую модель для списка "в формат"
@@ -291,6 +290,14 @@ public class DocsGUI {
                                 throw new RuntimeException(ex);
                             }
 
+                            break;
+                    }
+                }
+
+                if(fromFormat == "HTML") {
+                    switch (toFormat) {
+                        case "PDF":
+                            HtmlToPdfConverter.convertHtmlToPdf(String.valueOf(choosenFile));
                             break;
                     }
                 }

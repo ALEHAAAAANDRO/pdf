@@ -8,8 +8,9 @@ import java.io.OutputStream;
 
 public class HtmlToPdfConverter {
 
-    public static void convertHtmlToPdf(String htmlFilePath, String pdfFilePath) {
+    public static void convertHtmlToPdf(String htmlFilePath) {
         try {
+            String pdfFilePath = htmlFilePath.substring(0, htmlFilePath.lastIndexOf(".")) + ".pdf";
             // Создаем объект ITextRenderer
             ITextRenderer renderer = new ITextRenderer();
 
@@ -28,12 +29,5 @@ public class HtmlToPdfConverter {
         } catch (Exception e) {
             System.err.println("Error during HTML to PDF conversion: " + e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        // Пример использования
-        String htmlFilePath = "src/main/resources/html.html"; // Путь к HTML файлу
-        String pdfFilePath = "src/main/resources/output.pdf"; // Путь, по которому будет сохранен PDF файл
-        convertHtmlToPdf(htmlFilePath, pdfFilePath);
     }
 }
