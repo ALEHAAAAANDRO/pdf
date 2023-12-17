@@ -23,7 +23,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDF2TextExample {
 
-	private static final String PDF = "src/main/resources/pdf.pdf";
+	private static final String PDF = "src/main/resources/html2pdf.pdf";
 	private static final String TXT = "src/main/resources/txt.txt";
 
 	public static void main(String[] args) {
@@ -61,7 +61,8 @@ public class PDF2TextExample {
 
 	private static void generatePDFFromTxt(String filename) throws IOException, DocumentException {
 		Document pdfDoc = new Document(PageSize.A4);
-		PdfWriter.getInstance(pdfDoc, new FileOutputStream("src/output/txt.pdf"))
+		PdfWriter.getInstance(pdfDoc, new FileOutputStream(filename.substring(0,filename.lastIndexOf("."))
+						+ ".pdf"))
 				.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
 		pdfDoc.open();
 		
