@@ -114,6 +114,8 @@
         <open-html-pdf-core.version>1.0.10</open-html-pdf-core.version>
         <flying-saucer-pdf-openpdf.version>9.2.1</flying-saucer-pdf-openpdf.version>
         <jsoup.version>1.16.2</jsoup.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
 </project>

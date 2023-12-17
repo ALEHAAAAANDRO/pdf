@@ -35,7 +35,7 @@ public class PDF2TextExample {
 		}
 	}
 
-	private static void generateTxtFromPDF(String filename) throws IOException {
+	public static void generateTxtFromPDF(String filename) throws IOException {
 		File f = new File(filename);
 		String parsedText;
 		PDFParser parser = new PDFParser(new RandomAccessFile(f, "r"));
